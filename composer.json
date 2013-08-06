@@ -1,0 +1,25 @@
+{
+	"authors" : [{
+			"name" : "Gianluca Arbezzano",
+			"email" : "gianluca.arbezzano@singring.com",
+			"role" : "Developer"
+		}, {
+			"name" : "Antonio de Patto",
+			"email" : "antonio.depatto@singring.com"
+		}
+	],
+	"require" : {
+		"zendframework/zend-http" : "~2.2"
+	},
+	"require-dev" : {
+		"phpunit/phpunit" : ">=3.7"
+	},
+	"autoload" : {
+		"psr-0" : {
+			"DigitalBeesSDK" : "library/DigitalBeesSDK"
+		}
+	},
+	"support" : {
+		"email" : "open@digitalbees.it"
+	}
+}
