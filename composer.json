@@ -15,11 +15,11 @@
 		"phpunit/phpunit" : ">=3.7"
 	},
 	"autoload" : {
-		"psr-0" : {
-			"DigitalBeesSDK" : "library/DigitalBeesSDK"
-		}
+		"psr-0": {
+            		"DigitalBeesSDK": "library/"
+        	}
 	},
 	"support" : {
-		"email" : "open@digitalbees.it"
+		"email" : "dev@digitalbees.it"
 	}
 }
