@@ -2,6 +2,7 @@
 namespace DigitalBeesSDK;
 use Zend\Http\Client as Zc;
 use Zend\Http\Request;
+use ZendTest\XmlRpc\Server\Exception;
 
 /**
  * HTTP Client for Digitalbees service
@@ -9,10 +10,20 @@ use Zend\Http\Request;
 class Client
     extends Zc
 {
-    
-    public function __construct()
+
+    protected $apiKey;
+    protected $apiSecret;
+    /**
+     * @param array $configuration
+     */
+    public function __construct($apiKey, $apiSecret, $options = array())
     {
-        parent::__construct('http://api.digitalbees.it');
+        if(!isset($options['host'])){
+            $options['host'] = 'http://api.digitalbees.it';
+        }
+        $this->apiKey = $apiKey;
+        $this->apiSecret = $apiSecret;
+        parent::__construct($options['host']);
     }
     
     /**
@@ -27,6 +38,8 @@ class Client
         foreach($params as $key => $val){
             $request->getQuery()->$key = $val;
         }
+        $request->getQuery()->apisecret = $this->apiSecret;
+        $request->getQuery()->apikey = $this->apiKey;
         $this->setRequest($request);
         $this->setResponse($this->send());
         return json_decode($this->getResponse()->getBody(), true);
@@ -39,7 +52,9 @@ class Client
     public function getVideo($id)
     {
         $request = $this->getRequest();
-        $request->setUri("{$this->getUri()->toString()}get/{$id}");
+        $request->setUri("{$this->getUri()->toString()}get/video/{$id}");
+        $request->getQuery()->apisecret = $this->apiSecret;
+        $request->getQuery()->apikey = $this->apiKey;
         $this->setRequest($request);
         $this->setResponse($this->send());
         return json_decode($this->getResponse()->getBody(), true);
@@ -53,10 +68,12 @@ class Client
     public function getVideosByCategory($category, $params = array())
     {
         $request = $this->getRequest();
-        $request->setUri("{$this->getUri()->toString()}search/video?query=@category {$category}");
+        $request->setUri("{$this->getUri()->toString()}search/video?q=@category {$category}");
         foreach($params as $key => $val){
             $request->getQuery()->$key = $val;
         }
+        $request->getQuery()->apisecret = $this->apiSecret;
+        $request->getQuery()->apikey = $this->apiKey;
         $this->setRequest($request);
         $this->setResponse($this->send());
         return json_decode($this->getResponse()->getBody(), true);
@@ -68,7 +85,7 @@ class Client
      */
     public function getCategories()
     {
-        //TODO
+        return array('MUSIC');
     }
     
     /**
@@ -79,10 +96,12 @@ class Client
     public function searchVideo($query, $params = array())
     {
         $request = $this->getRequest();
-        $request->setUri("{$this->getUri()->toString()}search/video?query={$query}");
+        $request->setUri("{$this->getUri()->toString()}search/video?q={$query}");
         foreach($params as $key => $val){
             $request->getQuery()->$key = $val;
         }
+        $request->getQuery()->apisecret = $this->apiSecret;
+        $request->getQuery()->apikey = $this->apiKey;
         $this->setRequest($request);
         $this->setResponse($this->send());
         return json_decode($this->getResponse()->getBody(), true);
@@ -91,10 +110,12 @@ class Client
     public function searchAuthor($query, $params = array())
     {
         $request = $this->getRequest();
-        $request->setUri("{$this->getUri()->toString()}search/author?query={$query}");
+        $request->setUri("{$this->getUri()->toString()}search/author?q={$query}");
         foreach($params as $key => $val){
             $request->getQuery()->$key = $val;
         }
+        $request->getQuery()->apisecret = $this->apiSecret;
+        $request->getQuery()->apikey = $this->apiKey;
         $this->setRequest($request);
         $this->setResponse($this->send());
         return json_decode($this->getResponse()->getBody(), true);
@@ -107,6 +128,23 @@ class Client
         foreach($params as $key => $val){
             $request->getQuery()->$key = $val;
         }
+        $request->getQuery()->apisecret = $this->apiSecret;
+        $request->getQuery()->apikey = $this->apiKey;
+        $this->setRequest($request);
+        $this->setResponse($this->send());
+        return json_decode($this->getResponse()->getBody(), true);
+    }
+
+    /**
+     * Return one author from id
+     * @param integer $id
+     */
+    public function getAuthor($id)
+    {
+        $request = $this->getRequest();
+        $request->setUri("{$this->getUri()->toString()}get/author/{$id}");
+        $request->getQuery()->apisecret = $this->apiSecret;
+        $request->getQuery()->apikey = $this->apiKey;
         $this->setRequest($request);
         $this->setResponse($this->send());
         return json_decode($this->getResponse()->getBody(), true);
