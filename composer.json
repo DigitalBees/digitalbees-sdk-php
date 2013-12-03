@@ -2,6 +2,7 @@
     "name" : "digitalbees/sdk-php",
     "description": "SDK php for digitalbees api. Integration of Official videos in your site",
     "homepage": "http://www.digitalbees.it",
+    "version" : "0.0.1",
     "authors" : [{
 			"name" : "Gianluca Arbezzano",
 			"email" : "gianluca.arbezzano@singring.com",
