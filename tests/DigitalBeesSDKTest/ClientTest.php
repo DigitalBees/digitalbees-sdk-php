@@ -3,5 +3,4 @@ namespace DigitalBeesSDKTest;
 
 class ClientTest
 {
-        
 }

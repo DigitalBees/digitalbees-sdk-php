@@ -197,4 +197,19 @@ class Client
         $this->setResponse($this->send());
         return json_decode($this->getResponse()->getBody(), true);
     }
+
+    /**
+     * Top 10 videos Digitalbees
+     * @return array
+     */
+    public function mostPopular()
+    {
+        $request = $this->getRequest();
+        $request->setUri("{$this->getUri()->toString()}view/most-popular-digitalbees");
+        $request->getQuery()->apisecret = $this->apiSecret;
+        $request->getQuery()->apikey = $this->apiKey;
+        $this->setRequest($request);
+        $this->setResponse($this->send());
+        return json_decode($this->getResponse()->getBody(), true);
+    }
 }
