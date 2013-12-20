@@ -1,4 +1,4 @@
-tests/config.test.php
+config.test.php
 vendor
 composer.phar
 composer.lock
