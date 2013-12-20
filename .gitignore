@@ -1,8 +1,4 @@
-.buildpath
-.project
-.settings*
-index.php
-composer.lock
-*.local
-composer.phar
+tests/config.test.php
 vendor
+composer.phar
+composer.lock

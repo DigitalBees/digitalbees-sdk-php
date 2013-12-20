@@ -13,5 +13,3 @@ if (! isset($loader)) {
     throw new RuntimeException('vendor/autoload.php could not be found. Did you install via composer?');
 }
 $loader->add('DigitalBeesSDKTest\\', __DIR__);
-
-unset($file, $files, $loader);
