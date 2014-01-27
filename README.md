@@ -8,7 +8,7 @@ if you don't use composer to manage dependencies this skd require [Zend_Http](ht
 
 ### First configuration 
 ``` php 
-$sdk = new Client('apisecret', 'apikey');
+$sdk = new Client('apikey', 'apisecret');
 ```
 
 ### Help me to write this sdk
